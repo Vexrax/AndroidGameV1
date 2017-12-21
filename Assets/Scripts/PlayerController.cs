@@ -12,10 +12,18 @@ public class PlayerController : MonoBehaviour {
     {
     }
 
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "EnemyCube")
+        {
+            GameControl.control.health -= 1;
+        }
+    }
+
     void FixedUpdate()
     {
         transform.Translate(new Vector3(speed * Input.GetAxis("Horizontal")*Time.deltaTime,speed *Input.GetAxis("Vertical")*Time.deltaTime));
-        Debug.Log(transform.position.x);
+        //Debug.Log(transform.position.x);
         
         if (transform.position.x > 3.5)
         {

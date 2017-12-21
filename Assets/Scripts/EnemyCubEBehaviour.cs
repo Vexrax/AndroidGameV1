@@ -21,10 +21,10 @@ public class EnemyCubEBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log(isStarted);
-        Debug.Log("pos y: " + transform.position.y);
-        Debug.Log("pos x: " + transform.position.x);
-        Debug.Log("Current State: " + currentScript);
+        //Debug.Log(isStarted);
+        //Debug.Log("pos y: " + transform.position.y);
+        //Debug.Log("pos x: " + transform.position.x);
+        //Debug.Log("Current State: " + currentScript);
 
         if (!isStarted)
         {
@@ -52,7 +52,6 @@ public class EnemyCubEBehaviour : MonoBehaviour {
                 sidewardsSwingBox();
                 break;
         }
-
     }
     public void boxSetup()
     {
@@ -68,6 +67,12 @@ public class EnemyCubEBehaviour : MonoBehaviour {
                 break;
         }
     }
+
+    /**
+     * =====================================
+     * Script Movement Behaviours Below Here:
+     * =====================================
+     **/
     public void upwardSwingBox()
     {
         if (!setup)
@@ -92,4 +97,5 @@ public class EnemyCubEBehaviour : MonoBehaviour {
             setup = false;
         }
     }
+
 }

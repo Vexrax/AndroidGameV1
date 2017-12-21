@@ -34,7 +34,10 @@ public class GameControl : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        var gObj = GameObject.Find("MainPlayer"); //hook this into a checker to check for coliding boxes. 
+        //var mainPlayer = GameObject.Find("MainPlayer"); //hook this into a checker to check for coliding boxes. 
+        //var enemyCube = GameObject.Find("EnemyCube");
         control.points += 1;
     }
+
+
 }
