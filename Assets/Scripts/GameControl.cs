@@ -7,6 +7,10 @@ public class GameControl : MonoBehaviour {
     public static GameControl control;
     public float health;
     public int points;
+    public bool isStarted = false;
+    public bool setup = false;
+    public enum scripts { upwardSwing, SwidewardSwing };
+    public scripts currentScript;
 
     private void Awake()
     {
@@ -34,10 +38,16 @@ public class GameControl : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        //var mainPlayer = GameObject.Find("MainPlayer"); //hook this into a checker to check for coliding boxes. 
-        //var enemyCube = GameObject.Find("EnemyCube");
-        control.points += 1;
+        if (!control.isStarted)
+        {
+            selectScript();
+        }
+            control.points += 1;
     }
-
+    public void selectScript()
+    {
+        currentScript = (scripts)(new System.Random().Next(0, 2));
+        isStarted = true;
+    }
 
 }
