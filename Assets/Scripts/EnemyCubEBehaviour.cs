@@ -1,8 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class EnemyCubEBehaviour : MonoBehaviour {
+/*Class EnemyCubebehavoiur
+ * Behaviour class for enemy boxes: 
+ * Needs:
+ * runScripts();
+ * [object]Setup();
+ * 
+ */
+public class EnemyCubeBehaviour : MonoBehaviour {
 
     public Color color;
     public float speed;
@@ -51,7 +57,6 @@ public class EnemyCubEBehaviour : MonoBehaviour {
                 break;
         }
     }
-
     /**
      * =====================================
      * Script Movement Behaviours Below Here:

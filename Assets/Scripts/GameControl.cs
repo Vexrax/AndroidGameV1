@@ -38,16 +38,25 @@ public class GameControl : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        if (checkIfWon())
+            Application.LoadLevel("End Screen");
         if (!control.isStarted)
         {
             selectScript();
         }
-            control.points += 1;
+        control.points += 1;
     }
+
     public void selectScript()
     {
         currentScript = (scripts)(new System.Random().Next(0, 2));
         isStarted = true;
-    }
 
+    }
+    public bool checkIfWon()
+    {
+        if (health < 0)
+            return true;
+        return false;
+    }
 }
