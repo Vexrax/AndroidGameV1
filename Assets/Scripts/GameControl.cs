@@ -28,12 +28,13 @@ public class GameControl : MonoBehaviour {
     void Start ()
     {
         DontDestroyOnLoad(gameObject);
-	}
-	
-	void OnGUI ()
+    }
+
+    void OnGUI ()
     {
-        GUI.Label(new Rect(10, 10, 100, 30), "Health:" + health);
-        GUI.Label(new Rect(10, 40, 100, 30), "Points:" + points);
+        //GUI.Label(new Rect(10, 10, 100, 30), "Health:" + health);
+        GUI.Label(new Rect(23, 50, 100, 30), "Points:" + points);
+
     }
 
     private void FixedUpdate()
@@ -44,7 +45,8 @@ public class GameControl : MonoBehaviour {
         {
             selectScript();
         }
-        control.points += 1;
+        if(!checkIfWon())
+            control.points += 1;
     }
 
     public void selectScript()
