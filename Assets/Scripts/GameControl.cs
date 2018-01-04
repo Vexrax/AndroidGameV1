@@ -9,7 +9,7 @@ public class GameControl : MonoBehaviour {
     public int points;
     public bool isStarted = false;
     public bool setup = false;
-    public enum scripts { upwardSwing, SwidewardSwing };
+    public enum scripts { upwardSwing, SwidewardSwing, downwardSwing };
     public scripts currentScript;
 
     private void Awake()
@@ -39,8 +39,8 @@ public class GameControl : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (checkIfWon())
-            Application.LoadLevel("End Screen");
+        if (checkIfWon()) { }
+            //Application.LoadLevel("End Screen"); READD WHEN ENDSCREEN IS SETUP
         if (!control.isStarted)
         {
             selectScript();
@@ -51,7 +51,7 @@ public class GameControl : MonoBehaviour {
 
     public void selectScript()
     {
-        currentScript = (scripts)(new System.Random().Next(0, 2));
+        currentScript = (scripts)(new System.Random().Next(0, scripts.GetNames(typeof(scripts)).Length));
         isStarted = true;
 
     }

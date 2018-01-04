@@ -41,6 +41,9 @@ public class EnemyCubeBehaviour : MonoBehaviour {
             case GameControl.scripts.SwidewardSwing:
                 sidewardsSwingBox();
                 break;
+            case GameControl.scripts.downwardSwing:
+                downwardSwingBox();
+                break;
         }
     }
     public void boxSetup()
@@ -55,6 +58,11 @@ public class EnemyCubeBehaviour : MonoBehaviour {
                 transform.SetPositionAndRotation(new Vector3(4f, 0, 0), new Quaternion());
                 GameControl.control.setup = true;
                 break;
+            case GameControl.scripts.downwardSwing:
+                transform.SetPositionAndRotation(new Vector3(0, 9, 0), new Quaternion());
+                GameControl.control.setup = true;
+                break;
+
         }
     }
     /**
@@ -81,6 +89,18 @@ public class EnemyCubeBehaviour : MonoBehaviour {
         transform.localScale = new Vector3(1f, 10f, 1f);
         transform.Translate(new Vector3(-1 * speed, 0));
         if (transform.position.x <= -4f)
+        {
+            GameControl.control.isStarted = false;
+            GameControl.control.setup = false;
+        }
+    }
+    public void downwardSwingBox()
+    {
+        if (!GameControl.control.setup)
+            boxSetup();
+        transform.localScale = new Vector3(6f, 7f, 1f);
+        transform.Translate(new Vector3(0, -1 * speed));
+        if (transform.position.y <= -10f)
         {
             GameControl.control.isStarted = false;
             GameControl.control.setup = false;
