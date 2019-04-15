@@ -16,11 +16,7 @@ public class HealthBarScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        updateBar();
 
     }
-    private void updateBar()
-    {
-        Bar.fillAmount = (GameControl.control.health / 100);
-    }
+
 }

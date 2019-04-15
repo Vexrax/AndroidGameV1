@@ -1,16 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour {
 
     public static GameControl control;
-    public float health;
-    public int points;
-    public bool isStarted = false;
-    public bool setup = false;
-    public enum scripts { upwardSwing, SwidewardSwing, downwardSwing };
-    public scripts currentScript;
+    private SceneManager SceneManager; 
 
     private void Awake()
     {
@@ -25,40 +21,36 @@ public class GameControl : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+
     void Start ()
     {
         DontDestroyOnLoad(gameObject);
+        LoadNextLevel();
     }
 
-    void OnGUI ()
-    {
-        //GUI.Label(new Rect(10, 10, 100, 30), "Health:" + health);
-        GUI.Label(new Rect(23, 50, 100, 30), "Points:" + points);
-
-    }
-
+    /*
+    Checks for Update Each tick
+    */
     private void FixedUpdate()
     {
-        if (checkIfWon()) { }
-            //Application.LoadLevel("End Screen"); READD WHEN ENDSCREEN IS SETUP
-        if (!control.isStarted)
-        {
-            selectScript();
-        }
-        if(!checkIfWon())
-            control.points += 1;
+        //We should call the LoadNextLevel Function from the level game script.
+        //if(IsLevelComplete())
+        //{
+        //    LoadNextLevel();
+        //}
+        
     }
 
-    public void selectScript()
+    public bool IsLevelComplete()
     {
-        currentScript = (scripts)(new System.Random().Next(0, scripts.GetNames(typeof(scripts)).Length));
-        isStarted = true;
-
-    }
-    public bool checkIfWon()
-    {
-        if (health < 0)
-            return true;
+        //TODO check if the level tiles are all complete 
         return false;
+    }
+
+    public void LoadNextLevel()
+    {
+        Debug.Log("Loading Next Level");
+        SceneManager.LoadScene("Base Level");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Additive);   
     }
 }
