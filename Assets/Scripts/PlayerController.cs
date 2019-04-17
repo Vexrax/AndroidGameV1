@@ -14,15 +14,22 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Wall" && _actionused)
+        if (collision.gameObject.name.Contains( "Wall") && _actionused)
         {
             Debug.Log("Hit The Wall");
             GetComponent<ConstantForce2D>().force = new Vector3(0, 0);
+            _actionused = false;
         }
     }
 
     void FixedUpdate()
     {
+        //Wait for the unit to hit a wall
+        if (GetComponent<ConstantForce2D>().force.x != 0 || GetComponent<ConstantForce2D>().force.y != 0)
+        {
+            return;
+        }
+
         //TODO CLEAN THIS UP
         if (Input.GetAxis("Horizontal") > 0)
         {
